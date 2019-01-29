@@ -1,6 +1,6 @@
 # Reality SF Airtable Proxy
 
-This is a Node.js express proxy server between our Community Group forms and our Airtable database.
+This is a Node.js express proxy server between Reality SF Community Group administrative forms and our Airtable database.
 
 ## Authentication
 
@@ -14,3 +14,7 @@ To run during development, use `npm start`. You'll need to define the following 
 | --- | --- |
 | `AIRTABLE_API_KEY` | The API key for Airtable |
 | `AIRTABLE_CG_BASE` | The base workspace for the corresponding Airtable instance |
+| `AIRTABLE_BACKEND_BASE` | The base workspace for our Airtable backend tables |
+| `JWT_SIGNING_KEY` | The signing key used for creating and validating JSON web tokens |
+| `ZAPIER_WEBHOOK_URL` | The webhook used to sending emails |
+| `PUBLIC_URL` | The URL that our form lives at |
