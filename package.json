@@ -1,0 +1,23 @@
+{
+  "name": "reality-sf-airtable-proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint src/",
+    "start": "node src/index.js"
+  },
+  "author": "Daniel Chao (http://dchao.co/)",
+  "license": "ISC",
+  "dependencies": {
+    "airtable": "^0.5.8",
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "boom": "^7.3.0",
+    "eslint": "^5.12.1",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "lodash": "^4.17.11",
+    "winston": "^3.2.0"
+  }
+}
