@@ -3,12 +3,18 @@
  *
  * @param {Winston} log   A winston logger.
  */
-const handleErrors = (log) => (handler) => async (req, res) => {
+const handleErrors = (log) => (handler) => async (e, ctx) => {
   try {
-    await handler(req, res);
+    await handler(e, ctx);
   } catch (err) {
     if (err.isBoom) {
-      return res.status(err.output.statusCode).json(err.output);
+      return ctx.succeed({
+        statusCode: err.output.statusCode,
+        body: JSON.stringify({ message: err.output }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
     }
     if (err.statusCode) {
       return res.status(err.statusCode).json({ message: err.message });

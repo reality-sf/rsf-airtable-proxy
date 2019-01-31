@@ -1,0 +1,7 @@
+{
+  "name": "rsf-airtable-proxy",
+  "profile": "default",
+  "regions": [
+    "us-west-1"
+  ]
+}

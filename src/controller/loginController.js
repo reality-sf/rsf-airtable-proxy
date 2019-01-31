@@ -38,7 +38,7 @@ const expireTokens = async (email) => {
 
 /**
  * A "login" action exchanges a one-time token for a jwt. This will revoke all outstanding tokens for this email
- * address.
+ * address, essentially revoking any links that may have been sent previously.
  */
 module.exports.login = handleError(log)(async (req, res) => {
   const token = await tokenDao.fetch(req.body.token);

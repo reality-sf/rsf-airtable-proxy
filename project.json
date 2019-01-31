@@ -1,0 +1,9 @@
+{
+  "name": "rsf-airtable-proxy-functions",
+  "description": "",
+  "runtime": "nodejs8.10",
+  "memory": 128,
+  "timeout": 5,
+  "role": "arn:aws:iam::757915453100:role/rsf-airtable-proxy-functions_lambda_function",
+  "environment": {}
+}
