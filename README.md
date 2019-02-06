@@ -18,3 +18,7 @@ To run during development, use `npm start`. You'll need to define the following 
 | `JWT_SIGNING_KEY` | The signing key used for creating and validating JSON web tokens |
 | `ZAPIER_WEBHOOK_URL` | The webhook used to sending emails |
 | `PUBLIC_URL` | The URL that our form lives at |
+
+## Deployment
+
+Deployment happens through heroku.
