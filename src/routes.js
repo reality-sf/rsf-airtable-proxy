@@ -8,4 +8,5 @@ module.exports = (app) => {
 
   app.post('/email_login_link', loginController.emailLoginLink);
   app.put('/login', loginController.login);
+  app.get('/', (req, res) => res.send('hi'));
 };
