@@ -3,6 +3,7 @@ const handleErrors = require('../util/handleErrors');
 const _ = require('lodash');
 const peopleDao = require('../dao/people');
 const cgDao = require('../dao/communityGroup');
+const placementsDao = require('../dao/placementRequest');
 
 const log = createLogger('communityGroupController');
 
@@ -25,6 +26,13 @@ module.exports.fetchCommunityGroups = handleErrors(log)(async (req, res) => {
   res.json(groups.map(g => g.fields));
 });
 
+const archivePlacements = async (group) => {
+  const placements = await placementsDao.list(group.fields['CG Name']);
+  await Promise.all(placements.map((placement) => {
+    return placement.updateFields({ Archived: true });
+  }));
+};
+
 /**
  * Update a community group. Only fields within `ALLOWED_FIELDS` are actually updated.
  */
@@ -38,5 +46,11 @@ module.exports.updateCommunityGroup = handleErrors(log)(async (req, res) => {
     ..._.pick(req.body, ALLOWED_FIELDS),
     'Last Update': new Date().toDateString()
   });
+  if (group.fields['Capacity Remaining'] !== req.body['Capacity Available']) {
+    log.info('Received request to update community group capacity. Archiving existing placements');
+    await archivePlacements(group);
+  } else {
+    log.debug('Update request did not modify capacity available count. Skipping archive of placements.');
+  }
   res.status(201).json({ message: 'Updated' });
 });
