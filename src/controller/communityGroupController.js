@@ -36,7 +36,7 @@ module.exports.updateCommunityGroup = handleErrors(log)(async (req, res) => {
   }
   await group.updateFields({
     ..._.pick(req.body, ALLOWED_FIELDS),
-    'Last Update': new Date()
+    'Last Update': new Date().toDateString()
   });
   res.status(201).json({ message: 'Updated' });
 });
