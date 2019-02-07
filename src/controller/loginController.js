@@ -19,7 +19,7 @@ module.exports.emailLoginLink = handleError(log)(async (req, res) => {
   const person = await peopleDao.fetch(req.body.email);
   const token = await tokenDao.create(req.body.email);
   await axios.post(process.env.ZAPIER_WEBHOOK_URL, {
-    link: `${process.env.PUBLIC_URL}/?token=${token.fields.token}&email=${req.body.email}`,
+    link: `${process.env.PUBLIC_URL}/?token=${token.fields.token}`,
     to: `${person.fields.Name} <${req.body.email}>`,
     name: person.fields.Name
   });
