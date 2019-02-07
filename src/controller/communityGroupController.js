@@ -6,7 +6,15 @@ const cgDao = require('../dao/communityGroup');
 
 const log = createLogger('communityGroupController');
 
-const ALLOWED_FIELDS = ['Capacity Available'];
+const ALLOWED_FIELDS = [
+  'Capacity Available',
+  'Members',
+  'Meeting Night',
+  'Meeting Start Time',
+  'Meeting End Time',
+  'Cross Streets',
+  'Meeting Address'
+];
 
 /**
  * Fetch Community Groups where the leader belongs to this email address.
@@ -26,6 +34,9 @@ module.exports.updateCommunityGroup = handleErrors(log)(async (req, res) => {
   if (!leaders.includes(req.user.id)) {
     return res.status(403).json({ message: 'Alas, you are not a leader of this group and unable to modify it.' });
   }
-  await group.updateFields(_.pick(req.body, ALLOWED_FIELDS));
+  await group.updateFields({
+    ..._.pick(req.body, ALLOWED_FIELDS),
+    'Last Update': new Date()
+  });
   res.status(201).json({ message: 'Updated' });
 });
