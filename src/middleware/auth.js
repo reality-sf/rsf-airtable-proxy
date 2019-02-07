@@ -4,7 +4,7 @@ const { createLogger } = require('../clients/logger');
 const log = createLogger('auth');
 
 const authenticate = (req, res, next) => {
-  const token = req.headers.authorization.replace('Bearer ', '');
+  const token = (req.headers.authorization || '').replace('Bearer ', '');
   if (!token) {
     return res.status(401).json({ message: `In order to make a ${req.method} to ${req.path}, you must provide an authorization header`});
   }
