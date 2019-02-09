@@ -21,7 +21,7 @@ module.exports.emailLoginLink = handleError(log)(async (req, res) => {
   await axios.post(process.env.ZAPIER_WEBHOOK_URL, {
     link: `${process.env.PUBLIC_URL}/?token=${token.fields.token}`,
     to: `${person.fields.Name} <${req.body.email}>`,
-    name: person.fields.Name
+    name: person.fields['First Name']
   });
   res.status(201).end();
 });

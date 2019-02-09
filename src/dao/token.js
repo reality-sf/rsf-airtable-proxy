@@ -31,7 +31,7 @@ const create = async (email) => {
 const list = async (email) => {
   const tokens = await table.select({
     filterByFormula: `{email} = "${email}"`
-  }).firstPage();
+  }).all();
   return tokens;
 };
 

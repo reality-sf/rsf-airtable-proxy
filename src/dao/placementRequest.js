@@ -6,7 +6,7 @@ const table = airtable('CG Placement Requests');
 const list = async (groupName) => {
   const placements = await table.select({
     filterByFormula: `AND(FIND("${groupName}", {Placement}) > 0, {Archived} = FALSE())`
-  }).firstPage();
+  }).all();
   return placements;
 };
 
