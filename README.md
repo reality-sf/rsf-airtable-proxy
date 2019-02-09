@@ -21,4 +21,22 @@ To run during development, use `npm start`. You'll need to define the following 
 
 ## Deployment
 
-Deployment happens through heroku.
+Deployment happens through heroku. This app is deployed to two environments, staging and production. To set up your environment for deploys, you'll want to first have downloaded heroku's CLI for your OS: https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+
+Once that's complete, set up your remotes by running these commands within your git repo:
+
+```bash
+heroku login
+heroku git:remote -a staging-rsf-airtable-proxy -r staging
+heroku git:remote -a rsf-airtable-proxy -r production
+```
+
+This will allow you to deploy to staging and production, respectively. To deploy to the respective environment, run the commands below within the `master` branch. Note that this pushes up your current git `HEAD` (e.g. the latest commit).
+
+```bash
+# To deploy to staging
+git push staging
+
+# To deploy to production
+git push production
+```
