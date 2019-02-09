@@ -15,7 +15,7 @@ To run during development, use `npm start`. You'll need to define the following 
 | `AIRTABLE_API_KEY` | The API key for Airtable |
 | `AIRTABLE_CG_BASE` | The base workspace for the corresponding Airtable instance |
 | `AIRTABLE_BACKEND_BASE` | The base workspace for our Airtable backend tables |
-| `JWT_SIGNING_KEY` | The signing key used for creating and validating JSON web tokens |
+| `JWT_SIGNING_KEY` | The signing key used for creating and validating JSON web tokens. This can be any value that you want. |
 | `ZAPIER_WEBHOOK_URL` | The webhook used to sending emails |
 | `PUBLIC_URL` | The URL that our form lives at |
 
@@ -40,3 +40,12 @@ git push staging
 # To deploy to production
 git push production
 ```
+
+## Environments
+
+| Description | Staging | Production |
+| --- | --- | --- |
+| URL | https://staging-rsf-airtable-proxy.herokuapp.com | https://rsf-airtable-proxy.herokuapp.com |
+| Heroku Dashboard | https://dashboard.heroku.com/apps/staging-rsf-airtable-proxy | https://dashboard.heroku.com/apps/rsf-airtable-proxy |
+| Airtable CG's | [Dev - Reality SF CG's](https://airtable.com/tblinCnvetqch8CUi/viwPWZvWpqU8Pc9bB) | TBD |
+| Airtable CG | [Dev - CG Backend](https://airtable.com/tblloeeNHLNfEtewH/viwYP1N3XZUkCkexe) | [Prod - CG Backend](https://airtable.com/tblkRfVHJg2SWNQmV/viw08Ugl5bomWg53r) |
