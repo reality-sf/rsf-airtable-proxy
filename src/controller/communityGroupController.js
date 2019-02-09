@@ -14,7 +14,8 @@ const ALLOWED_FIELDS = [
   'Meeting Start Time',
   'Meeting End Time',
   'Cross Streets',
-  'Meeting Address'
+  'Meeting Address',
+  '# Members'
 ];
 
 /**
@@ -44,7 +45,8 @@ module.exports.updateCommunityGroup = handleErrors(log)(async (req, res) => {
   }
   await group.updateFields({
     ..._.pick(req.body, ALLOWED_FIELDS),
-    'Last Update': new Date().toDateString()
+    'Last Update': new Date().toDateString(),
+    'Update Status': 'Up to date'
   });
   if (group.fields['Capacity Remaining'] !== req.body['Capacity Available']) {
     log.info('Received request to update community group capacity. Archiving existing placements');

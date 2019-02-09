@@ -51,6 +51,6 @@ module.exports.login = handleError(log)(async (req, res) => {
     name: person.fields.Name,
     email: person.fields.Email,
     id: person.id
-  }, process.env.JWT_SIGNING_KEY, { expiresIn: '1 hour' });
+  }, process.env.JWT_SIGNING_KEY, { expiresIn: '1 day' });
   return res.status(200).json({ jwt });
 });
