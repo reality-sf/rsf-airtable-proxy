@@ -1,5 +1,4 @@
 const Airtable = require('airtable');
-// const { toObservable } = require('../util/airtable');
 
 const airtable = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_CG_BASE);
 const table = airtable('Community Groups');

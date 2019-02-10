@@ -1,5 +1,6 @@
 const communityGroupController = require('./controller/communityGroupController');
 const loginController = require('./controller/loginController');
+const configController = require('./controller/configController');
 const { authenticate } = require('./middleware/auth');
 
 module.exports = (app) => {
@@ -7,6 +8,8 @@ module.exports = (app) => {
   app.put('/community_groups/:groupId', authenticate, communityGroupController.updateCommunityGroup);
 
   app.get('/me', authenticate, (req, res) => res.json(req.user));
+
+  app.get('/configs', configController.getConfigs);
 
   app.post('/email_login_link', loginController.emailLoginLink);
   app.put('/login', loginController.login);
