@@ -15,7 +15,8 @@ const ALLOWED_FIELDS = [
   'Meeting End Time',
   'Cross Streets',
   'Meeting Address',
-  '# Members'
+  '# Members',
+  'Primary Neighborhood'
 ];
 
 /**
