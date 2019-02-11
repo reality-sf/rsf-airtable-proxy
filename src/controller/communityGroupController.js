@@ -22,7 +22,7 @@ const ALLOWED_FIELDS = [
 /**
  * Fetch Community Groups where the leader belongs to this email address.
  */
-module.exports.fetchCommunityGroups = handleErrors(log)(async (req, res) => {
+module.exports.fetchCommunityGroups = handleErrors(async (req, res) => {
   const person = await peopleDao.fetch(req.user.email);
   const groups = await cgDao.list(person.fields.Name);
   res.json(groups.map(g => g.fields));
@@ -38,7 +38,7 @@ const archivePlacements = async (group) => {
 /**
  * Update a community group. Only fields within `ALLOWED_FIELDS` are actually updated.
  */
-module.exports.updateCommunityGroup = handleErrors(log)(async (req, res) => {
+module.exports.updateCommunityGroup = handleErrors(async (req, res) => {
   const group = await cgDao.fetch(req.params.groupId);
   const leaders = group.fields.Leaders || [];
   if (!leaders.includes(req.user.id)) {

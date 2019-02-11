@@ -1,11 +1,8 @@
-const handleError = require('../util/handleErrors');
+const handleErrors = require('../util/handleErrors');
 const axios = require('axios');
-const { createLogger } = require('../clients/logger');
 const jsonwebtoken = require('jsonwebtoken');
 const peopleDao = require('../dao/people');
 const tokenDao = require('../dao/token');
-
-const log = createLogger('loginController');
 
 const MAX_TOKEN_TTL = 1000 * 60 * 60 * 24 * 30; // 1 month
 
@@ -15,7 +12,7 @@ const MAX_TOKEN_TTL = 1000 * 60 * 60 * 24 * 30; // 1 month
  * 1. The link expires. Each link has a TTL of 1 month
  * 2. The link is clicked, which exchanges the link for a JWT.
  */
-module.exports.emailLoginLink = handleError(log)(async (req, res) => {
+module.exports.emailLoginLink = handleErrors(async (req, res) => {
   const person = await peopleDao.fetch(req.body.email);
   const token = await tokenDao.create(req.body.email);
   await axios.post(process.env.ZAPIER_WEBHOOK_URL, {
@@ -40,7 +37,7 @@ const expireTokens = async (email) => {
  * A "login" action exchanges a one-time token for a jwt. This will revoke all outstanding tokens for this email
  * address.
  */
-module.exports.login = handleError(log)(async (req, res) => {
+module.exports.login = handleErrors(async (req, res) => {
   const token = await tokenDao.fetch(req.body.token);
   if (token.fields.issuedAt > new Date(Date.now() + MAX_TOKEN_TTL).toISOString()) {
     return res.status(403).json({ message: 'This token has already expired' });

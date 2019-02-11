@@ -8,7 +8,7 @@ module.exports = (app) => {
   app.get('/community_groups', authenticate, communityGroupController.fetchCommunityGroups);
   app.put('/community_groups/:groupId', authenticate, communityGroupController.updateCommunityGroup);
 
-  app.get('/neighborhoods', authenticate, neighborhoodController.list);
+  app.get('/neighborhoods', authenticate, neighborhoodController.list)
 
   app.get('/me', authenticate, (req, res) => res.json(req.user));
 

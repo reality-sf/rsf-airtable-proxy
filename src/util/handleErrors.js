@@ -1,9 +1,11 @@
+const log = require('../clients/logger').createLogger('handleErrors');
+
 /**
  * Handle possible exceptions coming from Express controllers.
  *
  * @param {Winston} log   A winston logger.
  */
-const handleErrors = (log) => (handler) => async (req, res) => {
+const handleErrors = (handler) => async (req, res) => {
   try {
     await handler(req, res);
   } catch (err) {
