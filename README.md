@@ -41,7 +41,7 @@ In Airtable, we have two fields that track this number: "Capacity Remaining" and
 
 | Field | Description |
 | --- | --- |
-| `Capacity Available` | The # that a Community Group leader provides to Reality about the total number they can accept. |
+| `Capacity Available` | How many new members a CG leader declares they can accept |
 | `Capacity Remaining` | A function of `Capacity Available`, subtracted by the number of `CG Placement Request`s that have been placed into this group. |
 
 If the `Capacity Available` field gets updated, the backend will automatically archive all `CG Placement Request` records for that CG.
