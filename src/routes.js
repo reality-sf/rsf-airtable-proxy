@@ -2,6 +2,7 @@ const communityGroupController = require('./controller/communityGroupController'
 const loginController = require('./controller/loginController');
 const configController = require('./controller/configController');
 const neighborhoodController = require('./controller/neighborhoodController');
+const peopleController = require('./controller/peopleController');
 const { authenticate } = require('./middleware/auth');
 
 module.exports = (app) => {
@@ -9,6 +10,8 @@ module.exports = (app) => {
   app.put('/community_groups/:groupId', authenticate, communityGroupController.updateCommunityGroup);
 
   app.get('/neighborhoods', authenticate, neighborhoodController.list);
+
+  app.get('/planning_center/people', peopleController.findPerson);
 
   app.get('/me', authenticate, (req, res) => res.json(req.user));
 
