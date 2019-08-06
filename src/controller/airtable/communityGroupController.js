@@ -1,9 +1,9 @@
-const { createLogger } = require('../clients/logger');
-const handleErrors = require('../util/handleErrors');
+const { createLogger } = require('../../clients/logger');
+const handleErrors = require('../../util/handleErrors');
 const _ = require('lodash');
-const peopleDao = require('../dao/people');
-const cgDao = require('../dao/communityGroup');
-const placementsDao = require('../dao/placementRequest');
+const peopleDao = require('../../dao/people');
+const cgDao = require('../../dao/communityGroup');
+const placementsDao = require('../../dao/placementRequest');
 
 const log = createLogger('communityGroupController');
 

@@ -1,5 +1,5 @@
-const neighborhoodDao = require('../dao/neighborhood');
-const handleErrors = require('../util/handleErrors');
+const neighborhoodDao = require('../../dao/neighborhood');
+const handleErrors = require('../../util/handleErrors');
 
 const list = handleErrors(async (req, res) => {
   const neighborhoods = await neighborhoodDao.list();

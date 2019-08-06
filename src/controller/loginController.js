@@ -13,7 +13,7 @@ const MAX_TOKEN_TTL = 1000 * 60 * 60 * 24 * 30; // 1 month
  * 2. The link is clicked, which exchanges the link for a JWT.
  */
 module.exports.emailLoginLink = handleErrors(async (req, res) => {
-  const person = await peopleDao.fetch(req.body.email);
+  const person = await peopleDao.find({ Email: req.body.email });
   const token = await tokenDao.create(req.body.email);
   await axios.post(process.env.ZAPIER_WEBHOOK_URL, {
     link: `${process.env.PUBLIC_URL}/?token=${token.fields.token}`,
