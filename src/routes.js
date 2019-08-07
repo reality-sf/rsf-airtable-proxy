@@ -10,6 +10,7 @@ module.exports = (app) => {
 
   app.get('/airtable/neighborhoods', authenticate, airtable.neighborhoodController.list);
 
+  app.get('/airtable/people', airtable.peopleController.findPerson);
   app.post('/airtable/people', airtable.peopleController.createPerson);
   app.put('/airtable/people/:personId', airtable.peopleController.updatePerson);
 

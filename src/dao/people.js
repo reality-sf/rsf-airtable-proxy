@@ -18,16 +18,29 @@ const fetch = async (id) => {
 
 /**
  * Retrieve a person by details.
+ *
+ * @param {object} params
+ * @param {string=} params.Email
+ * @param {string=} params['Phone Number']
+ */
+const search = async (params) => {
+  const people = await table.select({
+    filterByFormula: createAirtableFilter(params)
+  }).firstPage();
+  return people;
+};
+
+/**
+ * Retrieve a person by details.
+ *
  * @param {object} params
  * @param {string=} params.Email
  * @param {string=} params['Phone Number']
  */
 const find = async (params) => {
-  const [person] = await table.select({
-    filterByFormula: createAirtableFilter(params)
-  }).firstPage();
+  const [person] = await search(params);
   if (!person) {
-    return Promise.reject(Boom.notFound(`Unable to find person with email address ${email}`));
+    return Promise.reject(Boom.notFound(`Unable to find person with parameters: ${JSON.stringify(params)}`));
   }
   return person;
 };
@@ -44,5 +57,6 @@ const create = async (params) => {
 module.exports = {
   fetch,
   find,
-  create
+  create,
+  search
 };

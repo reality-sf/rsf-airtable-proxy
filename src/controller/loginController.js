@@ -42,7 +42,7 @@ module.exports.login = handleErrors(async (req, res) => {
   if (token.fields.issuedAt > new Date(Date.now() + MAX_TOKEN_TTL).toISOString()) {
     return res.status(403).json({ message: 'This token has already expired' });
   }
-  const person = await peopleDao.fetch(token.fields.email);
+  const person = await peopleDao.find({ Email: token.fields.email });
   await expireTokens(token.fields.email);
   const jwt = jsonwebtoken.sign({
     name: person.fields.Name,

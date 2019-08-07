@@ -23,7 +23,7 @@ const ALLOWED_FIELDS = [
  * Fetch Community Groups where the leader belongs to this email address.
  */
 module.exports.fetchCommunityGroups = handleErrors(async (req, res) => {
-  const person = await peopleDao.fetch(req.user.email);
+  const person = await peopleDao.find({ Email: req.user.email });
   const groups = await cgDao.list(person.fields.Name);
   res.json(groups.map(g => g.fields));
 });
