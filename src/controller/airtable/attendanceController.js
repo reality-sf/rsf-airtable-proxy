@@ -6,7 +6,7 @@ const ALLOWED_FIELDS = ['Person'];
 
 const create = handleErrors(async (req, res) => {
   const row = await attendanceDao.create(req.body);
-  return res.status(201).json(row);
+  return res.status(201).json(row.fields);
 });
 
 const find = handleErrors(async (req, res) => {

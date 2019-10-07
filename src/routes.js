@@ -19,8 +19,10 @@ module.exports = (app) => {
   app.put('/airtable/attendance/:attendanceId', airtable.attendanceController.update);
 
   app.get('/planning_center/people', planningCenter.peopleController.findPerson);
-  // app.post('/planning_center/people', planningCenter.peopleController.createPerson);
+  app.post('/planning_center/people', planningCenter.peopleController.createPerson);
+  app.get('/planning_center/people/:personId/email', planningCenter.peopleController.listEmail);
   app.post('/planning_center/people/:personId/email', planningCenter.peopleController.createEmail);
+  app.get('/planning_center/people/:personId/phone_numbers', planningCenter.peopleController.listPhoneNumber);
   app.post('/planning_center/people/:personId/phone_numbers', planningCenter.peopleController.createPhoneNumber);
 
   app.get('/me', authenticate, (req, res) => res.json(req.user));

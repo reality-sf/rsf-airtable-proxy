@@ -49,7 +49,16 @@ class PlanningCenterApi {
    * @param {string} params.remote_id
    */
   async createPerson (params) {
-    const { data } = await http.post('/people/v2/people', params);
+    const { data } = await http.post('/people/v2/people', { data: { attributes: params } });
+    return data;
+  }
+
+  /**
+   * List a person's phone numbers.
+   * @param {string} personId 
+   */
+  async listPhoneNumber (personId) {
+    const { data } = await http.get(`/people/v2/people/${personId}/phone_numbers`);
     return data;
   }
 
@@ -64,7 +73,17 @@ class PlanningCenterApi {
    * @param {string=} params.primary
    */
   async createPhoneNumber (personId, params) {
-    const { data } = await http.post(`/people/v2/people/${personId}/phone_numbers`, params);
+    const { data } = await http.post(`/people/v2/people/${personId}/phone_numbers`, { data: { attributes: params } });
+    return data;
+  }
+
+  /**
+   * List a person's emails.
+   *
+   * @param {string} personId 
+   */
+  async listEmail (personId) {
+    const { data } = await http.get(`/people/v2/people/${personId}/emails`);
     return data;
   }
 
@@ -74,11 +93,11 @@ class PlanningCenterApi {
    * @param {number} personId 
    * @param {object} params 
    * @param {string} params.address
-   * @param {string=} params.location
+   * @param {string} params.location
    * @param {string=} params.primary
    */
   async createEmail (personId, params) {
-    const { data } = await http.post(`/people/v2/people/${personId}/emails`, params);
+    const { data } = await http.post(`/people/v2/people/${personId}/emails`, { data: { attributes: params } });
     return data;
   }
 }

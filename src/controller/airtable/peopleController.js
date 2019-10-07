@@ -7,7 +7,7 @@ const ALLOWED_FIELDS = [
   'Last Name',
   'Email',
   'Phone Number',
-  'Newcomers Attendance'
+  'Planning Center ID'
 ];
 
 /**

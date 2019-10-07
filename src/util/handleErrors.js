@@ -1,4 +1,5 @@
 const log = require('../clients/logger').createLogger('handleErrors');
+const _ = require('lodash');
 
 /**
  * Handle possible exceptions coming from Express controllers.
@@ -15,7 +16,11 @@ const handleErrors = (handler) => async (req, res) => {
     if (err.statusCode) {
       return res.status(err.statusCode).json({ message: err.message });
     }
-    log.error(`Received error in ${req.method} to ${req.path}. Message: ${err.message}, stack: ${err.stack}`);
+    if (err.request) {
+      log.error(`Received error in ${req.method} to ${req.path}. Message: ${err.message}. Response body: ${JSON.stringify(_.get(err, 'response.data') || {}, null, 2)}`);
+    } else {
+      log.error(`Received unexepcted error during ${req.method} to ${req.path}. Message: ${err.message}. Stack: ${err.stack}`);
+    }
     return res.status(500).end();
   }
 };
