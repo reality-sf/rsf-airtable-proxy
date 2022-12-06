@@ -19,7 +19,7 @@
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
     "lodash": "^4.17.15",
-    "qs": "^6.7.0",
+    "qs": "^6.7.3",
     "sqlstring": "^2.3.1",
     "winston": "^3.2.0"
   }
